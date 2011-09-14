@@ -5,6 +5,8 @@ It allows you to use arguments and parameters in AppleScript, much like you woul
 
 ASArgs returns two arrays containing arguments and parameters respectively.
 
+I wrote this for one of the most popular new command line interfaces: Alfred.
+
 # An Example #
 
 ```applescript
