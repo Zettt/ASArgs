@@ -21,35 +21,35 @@
 
 property parameters : missing value
 
-set mytext to parameters
+if parameters is missing value then return {"Something went wrong.", ""}
 
-display dialog mytext
-
+-- setup empty args and params arrays for return later
 set args to {}
 set params to {}
 
+-- split args and params
 set AppleScript's text item delimiters to {"--", "-"}
-set myTextItems to text items of mytext
+set parametersItems to text items of parameters
 set AppleScript's text item delimiters to {""}
 
-set myTextItems to items 2 thru -1 of myTextItems
+-- the first splitted item is always empty, so we can remove it
+set parametersItems to items 2 thru -1 of parametersItems
 
-repeat with arg in myTextItems
-	-- display dialog arg
+-- iterate args and params
+repeat with arg in parametersItems
 	
 	-- repeat with every non " " argument
 	if arg is not missing value then
+		-- setting arg
 		set currentArg to word 1 of arg
-		-- display dialog currentArg
 		
+		-- setting params, which sometimes have trailing spaces
 		set currentParams to text ((length of currentArg) + 2) thru -1 of arg
-		
 		-- remove trailing space
 		if (last character of currentParams = " ") then
 			set currentParams to text 1 thru ((length of currentParams) - 1) of currentParams
 		end if
-		-- display dialog currentParams
-		
+
 	end if
 	
 	set end of args to currentArg
